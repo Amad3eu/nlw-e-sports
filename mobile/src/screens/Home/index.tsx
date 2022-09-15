@@ -1,41 +1,32 @@
 import React from 'react';
-import { Image, View, FlatList } from 'react-native';
+import { View, Image, FlatList } from 'react-native';
 
-import logoImg from '../../assets/logo-nlw-esports.png'
-import { GameCard } from '../../components/GameCard';
+import { styles } from './styles';
+
+import logoImage from '../../assets/logo-nlw-esports.png';
 import { Heading } from '../../components/Heading';
+import { GameCard } from '../../components/GameCard';
 
 import { GAMES } from '../../utils/games';
-import { styles } from './styles';
 
 export function Home() {
   return (
     <View style={styles.container}>
-      <Image
-        source={logoImg}
-        style={styles.logo}
-      />
+      <Image source={logoImage} style={styles.logo}></Image>
 
-      <Heading 
-        title='Encontre seu duo'
-        subtitle='Selecione o game que deseja jogar'
-      />
+      <Heading
+        title='Encontra o teu duo!'
+        subtitle='Seleciona o jogo que queres jogar...'
+      ></Heading>
 
-      <FlatList 
+      <FlatList
         data={GAMES}
-        keyExtractor={item =>  item.id}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <GameCard data={item} />}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentsList}
-        renderItem={({item})=> (
-          <GameCard 
-            data={item}
-          />
-        )}
-      />
-
-      
-
+        contentContainerStyle={styles.contentList}
+      ></FlatList>
     </View>
   );
 }
