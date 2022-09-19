@@ -19,6 +19,9 @@ app.get('/games', async (request, response) => {
         },
     })
 
+    // eslint-disable-next-line no-console
+    console.log('Request from', request.headers.origin)
+
     return response.json(games).status(200)
 })
 
@@ -85,4 +88,4 @@ app.post('/games/:id/ad', async (request, response) => {
     return response.json(ad).status(201)
 })
 
-app.listen(3002)
+app.listen(8080)
